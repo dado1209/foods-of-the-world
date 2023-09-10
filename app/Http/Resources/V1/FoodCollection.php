@@ -28,8 +28,17 @@ class FoodCollection extends ResourceCollection
             $default['meta']['to'],
             $default['meta']['from']
         );
-
-        return $default;
+        //convert snake case to camel case
+        $meta = [
+            'currentPage' => $default['meta']['current_page'],
+            'totalItems' => $default['meta']['total'],
+            'itemsPerPage' => $default['meta']['per_page'],
+            'totalPages' => ceil($default['meta']['total']/$default['meta']['per_page'])
+        ];
+        return [
+            'meta' => $meta,
+            'data' => $paginated['data'],
+            'links' => $default['links'],
+        ];
     }
-
 }
