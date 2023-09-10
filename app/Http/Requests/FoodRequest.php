@@ -25,7 +25,8 @@ class FoodRequest extends FormRequest
             'per_page' => 'nullable|numeric',
             'page' => 'nullable|numeric',
             'diff_time' => 'nullable|numeric|min:0',
-            'tags' => 'nullable|numeric',
+            'tags' => 'nullable|string',
+            'tags.*' =>'numeric',
             'with' => 'nullable',
             'lang' => 'required|string|size:2',
             'category' => 'nullable'

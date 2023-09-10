@@ -30,7 +30,6 @@ class FoodCollection extends ResourceCollection
         ];
         return [
             'meta' => $meta,
-            'data' => $paginated['data'],
             'links' => $default['links'],
         ];
     }

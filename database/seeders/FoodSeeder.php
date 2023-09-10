@@ -25,9 +25,10 @@ class FoodSeeder extends Seeder
         $tags = Tag::all();
         //every food must have  at least one tag
         //every tag does not need to have at least one food
+        //for each food insert a random number of tag ids into the food-tag pivot table
         Food::all()->each(function ($food) use ($tags) {
             $food->tags()->attach(
-                $tags->random(rand(1, 2))->pluck('id')->toArray()
+                $tags->random(rand(1, $tags->count()))->pluck('id')->toArray()
             );
         });
 
@@ -50,7 +51,7 @@ class FoodSeeder extends Seeder
         //every ingredient does not need to have at least one food
         Food::all()->each(function ($food) use ($ingredients) {
             $food->ingredients()->attach(
-                $ingredients->random(rand(1, 2))->pluck('id')->toArray()
+                $ingredients->random(rand(1, $ingredients->count()))->pluck('id')->toArray()
             );
         });
     }
