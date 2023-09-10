@@ -19,7 +19,7 @@ class FoodCollection extends ResourceCollection
         return parent::toArray($request);
     }
     //here we will modify our pagination data
-    public function paginationInformation($paginated, $default)
+    public function paginationInformation($request, $paginated, $default)
     {
         //convert snake case to camel case
         $meta = [
