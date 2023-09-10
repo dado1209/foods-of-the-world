@@ -39,8 +39,9 @@ class FoodSeeder extends Seeder
             $add_category = rand(0, 1);
             if ($add_category) {
                 $food->category_id = $categories->random()->id;
+                $food->save();
             };
-            $food->save();
+
         });
 
         //get all the seeded ingredients

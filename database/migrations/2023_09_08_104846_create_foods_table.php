@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['created', 'deleted', 'modified']);
+            $table->enum('status', ['created', 'deleted', 'modified'])->default('created');
             $table->softDeletes();
             $table->timestamps();
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');

@@ -26,7 +26,6 @@ class FoodFactory extends Factory
                 'title' => $this->faker->sentence(),
                 'description' => $this->faker->paragraph(),
             ],
-            'status' => 'created',
         ];
     }
 }
