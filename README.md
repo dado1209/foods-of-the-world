@@ -10,7 +10,7 @@ in order to get all the foods.
 - per_page: number of foods per page
 - page: current page
 - category: get food by their category id, this can also be NULL to get all foods which dont have a category id or !NULL to get all foods which have a category id
-- tags: get food by tag id
+- tags: get food by tag id or list of tag ids
 - diff_time: UNIX timestamp, get all foods that were created after the time diff_time. Also includes food that was modified or deleted.
 - with: includes the information we want to return along with the food(tags,category,ingredients)
 
