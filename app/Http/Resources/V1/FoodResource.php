@@ -28,8 +28,8 @@ class FoodResource extends JsonResource
             'description' => $this->description,
             //show category, tags and ingredients if they are in the url 'with' parameter
             'category' => CategoryResource::make($this->when(in_array('category', $includeValues), $this->category)),
-            'tags' => TagResource::collection($this->when(in_array('tags', $includeValues), $this->tags)),
-            'ingredients' => IngredientResource::collection($this->when(in_array('ingredients', $includeValues), $this->ingredients))
+            'tags' => new TagCollection($this->when(in_array('tags', $includeValues), $this->tags)),
+            'ingredients' => new IngredientCollection($this->when(in_array('ingredients', $includeValues), $this->ingredients))
 
         ];
     }
