@@ -24,16 +24,8 @@ class FoodController extends Controller
     {
         //validation
         $request->validate;
-        App::setLocale($request->lang);
         //filter the food
         $foods = Food::filter($this->filter);
-        //check if we want to return tags, category or ingredients
-        $includeValues = explode(',', $request->query('with'));
-        foreach ($includeValues as $value) {
-            if (in_array($value, ['tags', 'category', 'ingredients'])) {
-                $foods = $foods->with($value);
-            }
-        }
         return new FoodCollection($foods->paginate($request->per_page)->appends($request->query()));
     }
 }

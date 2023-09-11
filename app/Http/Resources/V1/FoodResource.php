@@ -17,14 +17,19 @@ class FoodResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        //set the language
+        App::setLocale($request->lang);
+        //array of values that we would like to know about the filtered food (tags, category, ingredients)
+        $includeValues = explode(',', $request->query('with'));
         return [
             'id' => $this->id,
             'status' => $this->status,
             'title' => $this->title,
             'description' => $this->description,
-            'tags' => TagResource::collection($this->whenLoaded('tags')),
-            'category' => CategoryResource::make($this->whenLoaded('category')),
-            'ingredients' => IngredientResource::collection($this->whenLoaded('ingredients'))
+            //show category, tags and ingredients if they are in the url 'with' parameter
+            'category' => CategoryResource::make($this->when(in_array('category', $includeValues), $this->category)),
+            'tags' => TagResource::collection($this->when(in_array('tags', $includeValues), $this->tags)),
+            'ingredients' => IngredientResource::collection($this->when(in_array('ingredients', $includeValues), $this->ingredients))
 
         ];
     }
