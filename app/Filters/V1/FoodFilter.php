@@ -53,13 +53,15 @@ class FoodFilter
 
     //filter by tags
     //separate tags string into array by ','
-    //and find all tag ids that are in this array
+    //and find all food which contains all the tags from $tags
     public function tags($tags)
     {
         if (!empty($tags)) {
-            $this->builder->whereHas('tags', function ($query) use ($tags) {
-                $query->whereIn('tags.id', explode(',', $tags));
-            });
+            foreach (explode(',', $tags) as $tag) {
+                $this->builder->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('tags.id', $tag);
+                });
+            }
         }
     }
 
