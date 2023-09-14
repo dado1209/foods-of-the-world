@@ -81,7 +81,7 @@ class FoodFilter
     //filter by diff_time
     public function diff_time($time)
     {   // if we get a valid diff_time value then we filter by all foods
-        if (!empty($value)) {
+        if (!empty($time)) {
             $this->builder->where(function ($query) use ($time) {
                 $query->where('created_at', '>=', date('Y-m-d H:i:s', $time))
                     ->orWhere('updated_at', '>=', date('Y-m-d H:i:s', $time))
